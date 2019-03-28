@@ -1,0 +1,27 @@
+&resolution
+nlat = 60
+nz = 50
+nb = 64
+/
+&folder
+DIRDATA = '/gpfs/ts0/projects/Research_Project-157370/fvd201/2D_sca/data_baroclinic/'
+/
+
+#trad_type can be komacek, iroetal or constnt
+&planet
+deep = .TRUE.
+g_var = .TRUE. 
+eq_sym = .TRUE.
+trad_type = 'komacek' 
+tdrag_type = 'komacek'
+m = 1
+ymax=88.999
+height_min = 0.0
+height_max = 80000.0
+g = 9.80616d0
+omega = 7.292d-5
+gascons = 287.05d0
+cp =1005.0d0 
+rtot = 6371229.0d0 
+p0 = 1.0d5
+/

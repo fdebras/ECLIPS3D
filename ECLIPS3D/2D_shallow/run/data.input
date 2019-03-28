@@ -1,0 +1,22 @@
+&resolution
+nlong = 60
+nlat = 30
+nb = 64
+/
+&folder
+DIRDATA = '/home/florian/test/ECLIPS3D/2D_shallow/data/'
+/
+&planet
+phi = 0.d0
+height = 424628.450d0 
+g = 9.42d0
+omega = 2.06d-5
+gascons = 4593.0d0
+cp =14308.4d0
+rtot = 9.44d7
+p0 = 2.2d7
+/
+&timescales
+trad_invert = 0.d0
+tdrag_invert = 0.d0
+/
