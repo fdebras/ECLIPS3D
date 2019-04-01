@@ -34,6 +34,24 @@ Namely: - mod_data.F90: contains the data public to all modules of the code.
 Two other files allow to select and write the eigenvectors: study_eigenvectors.F90 read the eigenvector file and select some according to the selection procedures described in Debras et al. 2019. write_eigenvectors.F90 write the selected eigenvectors in a new file to feed them into python. NOTE: in the 3D_steady version, both these files are contained in read_solution.F90, that just allows to write the steady solution in a format suited for the given python file.
 
 2) bin - contains the Makefile, and the intermediate compilation files. 
+
+3) run - contains the input files and the exe file created by bin. 
+
+4) data - contains the input data to launch the code as well as the output.
+
+5) python - contains typical python files to generate an initial set of data and study the output. We provide simple example in these python files, namely axisymmetric state at rest and an initial, steady baroclinically unstable jet. 
+
+-------------------------------------------------------
+OVERVIEW OF THE CODE
+-------------------------------------------------------
+
+ECLIPS3D first initialises the parallel computing, performed by MPI, and allocates the memory on each processor to store the matrix to invert/to which we seek eigenvectors. The size on each processor is set by the parameter nb, and the performances of the program are very dependent to nb. It seems that nb ~ ntot/sqrt(n_proc)/10 is a reasonable number for good performances. 
+
+Once initialised, the program calls mod_fill_matrix in order to calculate the coefficients of the matrix. In this version, we have decided to generate input data file from python (which deals with interpolations very easily) and read them afterwards in  fortran in ECLIPS3D. Changing that is no problem.
+
+We then calculate the coordinates of the grid, the drag and radiative timescales if needed (a tentative at diffusion is also proposed, although not tested yet), the sound speed and brunt vaisala frequency. We then write an output file with the initial state so that it can be used to reconstruct dimensional variables once the program has run. 
+
+Finally, we fill the matrix. There is a loop on ntot which set to one only the ith point and zero all the other one, followed by an inner loop on the coefficient of the matrix so that the coefficient i,j is the impact on the jth point from the ith point only. The beginning of the loop ensures that some points are always zero, according to boundary condition. The default setup assumes north south symmetry, hence v must be zero at the equator. The usual condition on v is that vcosphi must be zero at the pole, hence we set to zero all the terms that do not cancel in the equation of v when multiplied by cos phi and setting cos phi = 0. 
         
                                         
                                         
