@@ -45,14 +45,23 @@ Two other files allow to select and write the eigenvectors: study_eigenvectors.F
 OVERVIEW OF THE CODE
 -------------------------------------------------------
 
-ECLIPS3D first initialises the parallel computing, performed by MPI, and allocates the memory on each processor to store the matrix to invert/to which we seek eigenvectors. The size on each processor is set by the parameter nb, and the performances of the program are very dependent to nb. It seems that nb ~ ntot/sqrt(n_proc)/10 is a reasonable number for good performances. 
+ECLIPS3D first initialises the parallel computing, performed by MPI, and allocates the memory on each processor to store the matrix to invert/for eigenvector calculation. The size on each processor is set by the parameter nb, and the performances of the program are very dependent to nb. It seems that nb ~ ntot/sqrt(n_proc)/10 is a reasonable number for good performances. 
 
 Once initialised, the program calls mod_fill_matrix in order to calculate the coefficients of the matrix. In this version, we have decided to generate input data file from python (which deals with interpolations very easily) and read them afterwards in  fortran in ECLIPS3D. Changing that is no problem.
 
 We then calculate the coordinates of the grid, the drag and radiative timescales if needed (a tentative at diffusion is also proposed, although not tested yet), the sound speed and brunt vaisala frequency. We then write an output file with the initial state so that it can be used to reconstruct dimensional variables once the program has run. 
 
-Finally, we fill the matrix. There is a loop on ntot which set to one only the ith point and zero all the other one, followed by an inner loop on the coefficient of the matrix so that the coefficient i,j is the impact on the jth point from the ith point only. The beginning of the loop ensures that some points are always zero, according to boundary condition. The default setup assumes north south symmetry, hence v must be zero at the equator. The usual condition on v is that vcosphi must be zero at the pole, hence we set to zero all the terms that do not cancel in the equation of v when multiplied by cos phi and setting cos phi = 0. 
-        
+Afterwards, we fill the matrix. There is a loop on ntot which set to one only the ith point and zero all the other one, followed by an inner loop on the coefficient of the matrix so that the coefficient i,j is the impact on the jth point from the ith point only. The beginning of the loop ensures that some points are always zero, according to boundary condition. The default setup assumes north south symmetry, hence v must be zero at the equator. The usual condition on v is that vcosphi must be zero at the pole, hence we set to zero all the terms that do not cancel in the equation of v when multiplied by cos phi and setting cos phi = 0. 
+
+Finally, the last routine either inverts the matrix, calculates the full spectrum of eigenvectors or simply calculates the selected eigenvectors. This involves combining numerous sclapack routine, as described in the submitted paper. 
+
+-
+IMPORTANT NOTE: In this version, all the matrices are filled with complex quantities. This is inspired by the 2D, axisymmetric case with an initial state at rest where there is a diffenrence of phase of Pi between u and $v$, hence one is pure imaginary when the other is real. THIS HAS TO BE CHANGED, as keeping a complex matrix increases the size of the memory to store the matrix, whereas the real part of each number is always zero in the 3D version. The interest lies in the fact that reading the complex eigenvectors of a real matrix is different than just reading the eigenvector of a complex matrix in SCALAPACK, and we have not implemented the former case in python.
+-
                                         
+                                        
+-------------------------------------------------------
+SIMPLE CASES
+-------------------------------------------------------
                                         
                                         
