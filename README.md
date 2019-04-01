@@ -55,13 +55,14 @@ Afterwards, we fill the matrix. There is a loop on ntot which set to one only th
 
 Finally, the last routine either inverts the matrix, calculates the full spectrum of eigenvectors or simply calculates the selected eigenvectors. This involves combining numerous sclapack routine, as described in the submitted paper. 
 
--
-IMPORTANT NOTE: In this version, all the matrices are filled with complex quantities. This is inspired by the 2D, axisymmetric case with an initial state at rest where there is a diffenrence of phase of Pi between u and $v$, hence one is pure imaginary when the other is real. THIS HAS TO BE CHANGED, as keeping a complex matrix increases the size of the memory to store the matrix, whereas the real part of each number is always zero in the 3D version. The interest lies in the fact that reading the complex eigenvectors of a real matrix is different than just reading the eigenvector of a complex matrix in SCALAPACK, and we have not implemented the former case in python.
--
-                                        
+
+IMPORTANT NOTE: In this version, all the matrices are filled with complex quantities. This is inspired by the 2D, axisymmetric case with an initial state at rest where there is a difference of phase of Pi between u and v, hence one is pure imaginary when the other is real. THIS HAS TO BE CHANGED, as keeping a complex matrix increases the size of the memory to store the matrix, whereas the real part of each number is always zero in the 3D version. The interest lies in the fact that reading the complex eigenvectors of a real matrix is different than just reading the eigenvector of a complex matrix in SCALAPACK, and we have not implemented the former case in python.                                    
                                         
 -------------------------------------------------------
-SIMPLE CASES
+RUNNING ECLIPS3D
 -------------------------------------------------------
-                                        
+
+In this section we detail how to run ECLIPS3D, with the test cases provided. We begin with the 2D, axisymmetric version of the code. 
+
+
                                         
