@@ -13,8 +13,8 @@ from scipy.misc import derivative
 import scipy.optimize as Opt
 
 
-#three=False
-three = True
+three=False
+#three = True
 
 
 Nlong = 35
