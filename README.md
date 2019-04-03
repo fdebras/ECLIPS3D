@@ -66,7 +66,8 @@ In this section we detail how to run ECLIPS3D, with the test cases provided.
 
 
 ##########################
-**The most important thing is to configure your Makefile properly to ensure that the code loads the BLAS, LAPACK and SCALAPACK libraries properly. 
+
+**The most important thing is to configure your Makefile properly to ensure that the code loads the BLAS, LAPACK and SCALAPACK libraries properly.** 
 
 Typically, if you are using MKL, you should add in the Flags : 
 
@@ -83,7 +84,8 @@ If you just downloaded lapack and scalapack on your personal computer, then the 
 
 "LIBS     = /usr/lib/libblacs-openmpi.so.1 /usr/lib/libscalapack-openmpi.so.1.8.0 \
     /usr/lib/libblacsF77init-openmpi.so.1" 
-##############################
+
+##########################
 
 2D_axi : 
 
