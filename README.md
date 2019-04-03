@@ -62,7 +62,28 @@ IMPORTANT NOTE: In this version, all the matrices are filled with complex quanti
 RUNNING ECLIPS3D
 -------------------------------------------------------
 
-In this section we detail how to run ECLIPS3D, with the test cases provided.
+In this section we detail how to run ECLIPS3D, with the test cases provided. 
+
+
+##########################
+**The most important thing is to configure your Makefile properly to ensure that the code loads the BLAS, LAPACK and SCALAPACK libraries properly. 
+
+Typically, if you are using MKL, you should add in the Flags : 
+
+"FLAGS = -I${MKLROOT}/include/intel64/lp64 -I${MKLROOT}/include"
+
+and in the libraries something of this kind : 
+
+"LIBS =  ${MKLROOT}/lib/intel64/libmkl_lapack95_lp64.a -L${MKLROOT}/lib/intel64 -lmkl_scalapack_lp64 \
+        -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -liomp5 -lpthread -lm -ldl -lblas -lcurl"
+        
+Obviously, this depends on the version of lapack and scalapack you are using. 
+
+If you just downloaded lapack and scalapack on your personal computer, then the Flags line can be emptied and the library line should look like:
+
+"LIBS     = /usr/lib/libblacs-openmpi.so.1 /usr/lib/libscalapack-openmpi.so.1.8.0 \
+    /usr/lib/libblacsF77init-openmpi.so.1" 
+##############################
 
 2D_axi : 
 
