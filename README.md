@@ -87,6 +87,8 @@ If you just downloaded lapack and scalapack on your personal computer, then the 
 
 ##########################
 
-2D_axi : 
+Assuming that compilation works fine, here is a detail of how to run the code for the four setups. 
+
+*2D_axi* : 
 
                                         
