@@ -39,7 +39,7 @@ Two other files allow to select and write the eigenvectors: study_eigenvectors.F
 
 4) data - contains the input data to launch the code as well as the output.
 
-5) python - contains typical python files to generate an initial set of data and study the output. We provide simple example in these python files, namely axisymmetric state at rest and an initial, steady baroclinically unstable jet. 
+5) python - contains typical python files to generate an initial set of data and study the output. We provide simple example in these python files, namely axisymmetric state at rest and an initial, steady baroclinically unstable jet. For the steady linear circulations, the provided example follows Komacek & Showman 2016 for the heating rate and radiative and drag timescales. 
 
 -------------------------------------------------------
 OVERVIEW OF THE CODE
@@ -62,7 +62,8 @@ IMPORTANT NOTE: In this version, all the matrices are filled with complex quanti
 RUNNING ECLIPS3D
 -------------------------------------------------------
 
-In this section we detail how to run ECLIPS3D, with the test cases provided. We begin with the 2D, axisymmetric version of the code. 
+In this section we detail how to run ECLIPS3D, with the test cases provided.
 
+2D_axi : 
 
                                         
