@@ -107,18 +107,10 @@ Different things should be printed:
                   
 If you get a message of the form "PZGEHRD failure", it means that the scalapack routine PZGEHRD had a problem. I can't help you from there, probably something wrong with your installation/setup. 
 
-6) Now, a very heavy file has been written in the data repertory, containing all the eigenvectors. This might not be the most convenient way, but it has a few advantages I did not want to give up on. The rest is handled by study_eigenvectors and read_eigenvectors.
-
-Study_eigenvectors reads the pressure of the modes, checks whether they are numerically correct, select them according to given criteria (in the default version, less than two zeros in every coordinates) and then writes the number of the modes in a file for write to read it, and write a final, light output file. In my todo list, I need to make automatic the fact that study_eigenvectors and write_eigenvectors know the directory and the number of points. For now, you need to change it manually in the fortran files (except in the 3D version for the number of points).
-
-So type "gfortran ../src/study_eigenvectors.F90 -o study.exe" and then "./study.exe"
-
-A list of information, namely the number, frequency, growth rate (and number of zeros in the 3D version) will be printed on your terminal.
+6) Now, a very heavy file has been written in the data repertory, containing all the eigenvectors. This might not be the most convenient way, but it has a few advantages I did not want to give up on. The rest is handled by study_eigenvectors and read_eigenvectors. Study_eigenvectors reads the pressure of the modes, checks whether they are numerically correct, select them according to given criteria (in the default version, less than two zeros in every coordinates) and then writes the number of the modes in a file for write to read it, and write a final, light output file. In my todo list, I need to make automatic the fact that study_eigenvectors and write_eigenvectors know the directory and the number of points. For now, you need to change it manually in the fortran files (except in the 3D version for the number of points). So type "gfortran ../src/study_eigenvectors.F90 -o study.exe" and then "./study.exe . A list of information, namely the number, frequency, growth rate (and number of zeros in the 3D version) will be printed on your terminal.
 
 7) Do the same for write_eigenvectors: change the directory and number of points, then type 
-"gfortran ../src/write_eigenvectors.F90 -o write.exe" and then "./write.exe"
-
-The frequency of the first modes and the number of the modes will be printed on screen, with the last one being always zero. You now have an output file in the data repertory called "selected_eigenvectors.dat" that contains everything you need !
+"gfortran ../src/write_eigenvectors.F90 -o write.exe" and then "./write.exe" The frequency of the first modes and the number of the modes will be printed on screen, with the last one being always zero. You now have an output file in the data repertory called "selected_eigenvectors.dat" that contains everything you need !
 
 8) Last step is to visualize your results with python. Open the plot_output.py file.
 
