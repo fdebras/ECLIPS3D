@@ -77,13 +77,11 @@ and in the libraries something of this kind :
 
 "LIBS =  ${MKLROOT}/lib/intel64/libmkl_lapack95_lp64.a -L${MKLROOT}/lib/intel64 -lmkl_scalapack_lp64 \
         -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -liomp5 -lpthread -lm -ldl -lblas -lcurl"
-        
-Obviously, this depends on the version of lapack and scalapack you are using. 
 
-If you just downloaded lapack and scalapack on your personal computer, then the Flags line can be emptied and the library line should look like:
+If you never heard of Lapack and Scalapack before, the easiest thing might be to install LAPACK (e.g, https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) and then scalapack from the netlib website, following the installation guide (http://www.netlib.org/lapack/lawns/lawn93.ps).
 
-"LIBS     = /usr/lib/libblacs-openmpi.so.1 /usr/lib/libscalapack-openmpi.so.1.8.0 \
-    /usr/lib/libblacsF77init-openmpi.so.1" 
+Then, ECLIPS3D should work if you just change the libs line in the makefile :
+"LIBS = -lblas -llapack /$YOURDIRECTORY_SCALAPACK/libscalapack.a"
 
 ##########################
 
