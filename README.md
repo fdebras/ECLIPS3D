@@ -81,11 +81,11 @@ and in the libraries something of this kind :
 If you never heard of Lapack and Scalapack before, the easiest thing might be to install LAPACK (e.g, https://pheiter.wordpress.com/2012/09/04/howto-installing-lapack-and-blas-on-mac-os/) and then scalapack from the netlib website, following the installation guide (http://www.netlib.org/lapack/lawns/lawn93.ps).
 
 Then, ECLIPS3D should work if you just change the libs line in the makefile :
-"LIBS = -lblas -llapack /$YOURDIRECTORY_SCALAPACK/libscalapack.a"
+"LIBS = /usr/local/lib/libblas.a /usr/local/lib/liblapack.a /usr/local/lib/libscalapack.a"
 
 ##########################
 
-Assuming that compilation works fine, here is a detail of how to run the code for the three eigenvectors setup, and afterwards for the steady circulation. 
+Assuming that compilation works fine, here is a detail of how to run the code for the three eigenvectors setup, and afterwards for the steady circulation and the selected eigenvectors setup. 
 
 1) In the python repertory: run the script data_to_ECLIPS3D.py to generate an atmosphere initialised at rest. You need to change the 'output_dire' at the beginning of the file to the correct path to your computer. Choose a number of radial (Nz), latitudinal (Nlat) (and longitudinal (Nlong) if you are running the 3D code) points, according to your number of processors. Resolution and execution time are alluded to in the paper.  
 
@@ -96,6 +96,32 @@ Assuming that compilation works fine, here is a detail of how to run the code fo
 4) Open timescales.input. If you want free waves, set both these values to zero. If you want waves with a linear dissipation, such is performed in the paper on the superrotation of hot Jupiters that will be submitted 21st of April, choose the characteristic timescales you want. More documentation is provided in Iro et al. 2005 and Komacek and Showman 2016.
 
 5) Run the program (the exe file depends on the setup) : mpirun - np #NBPROCS ./ECLIPS3D.exe data.input timescales.input  
-Different things should be printed. First the local leading dimension, a useful information about the size of the matrix. Then "all read", "timescales ok" telling that the initialisation is going well. 
+Different things should be printed:
+                  - the name of the parameter file: "parameter file name=data.input"
+                  - the local leading dimension, a useful information about the size of the matrix. 
+                  - Then "all read", "timescales ok" telling that the initialisation is going well. 
+                  - "Begin eigenvalues finder" tells you that the matrix is ready
+                  - Then a few steps in the calculation, beginning by "Diagonal killed", preparing for Schur decomposition
+                  - The scary "last routine", which means that the most time consuming routine is for now
+                  - And finally "job finished" when everything is over.
+                  
+If you get a message of the form "PZGEHRD failure", it means that the scalapack routine PZGEHRD had a problem. I can't help you from there, probably something wrong with your installation/setup. 
+
+6) Now, a very heavy file has been written in the data repertory, containing all the eigenvectors. This might not be the most convenient way, but it has a few advantages I did not want to give up on. The rest is handled by study_eigenvectors and read_eigenvectors.
+
+Study_eigenvectors reads the pressure of the modes, checks whether they are numerically correct, select them according to given criteria (in the default version, less than two zeros in every coordinates) and then writes the number of the modes in a file for write to read it, and write a final, light output file. In my todo list, I need to make automatic the fact that study_eigenvectors and write_eigenvectors know the directory and the number of points. For now, you need to change it manually in the fortran files (except in the 3D version for the number of points).
+
+So type "gfortran ../src/study_eigenvectors.F90 -o study.exe" and then "./study.exe"
+
+A list of information, namely the number, frequency, growth rate (and number of zeros in the 3D version) will be printed on your terminal.
+
+7) Do the same for write_eigenvectors: change the directory and number of points, then type 
+"gfortran ../src/write_eigenvectors.F90 -o write.exe" and then "./write.exe"
+
+The frequency of the first modes and the number of the modes will be printed on screen, with the last one being always zero. You now have an output file in the data repertory called "selected_eigenvectors.dat" that contains everything you need !
+
+8) Last step is to visualize your results with python. Open the plot_output.py file.
+
+Three things are needed: the directory, the rho_cs_ns.dat file and the selected_eigenvector.dat file.
 
                                         
