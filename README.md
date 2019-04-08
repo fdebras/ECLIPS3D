@@ -93,7 +93,7 @@ Assuming that compilation works fine, here is a detail of how to run the code fo
 
 2) In the bin directory, type 'make' (see above for discussions about libraries). You might need to adapt to other compilers if mpif90 is not on your computer. This is easily done in the Makefile.
 
-3) In the run directory: open data.input and adapt it to the planet you are considering, and the number of points you are using. For low number of points, nb=255 seems to always be a good choice for shortening execution time. For higher resolution runs, nb = ntot/sqrt(nprocs)/10 seems adequate. Globally, documentation is missing on that point in SCALAPACK.
+3) In the run directory: open data.input and change the directory, adapt it to the planet you are considering, and the number of points you are using. For low number of points, nb=255 seems to always be a good choice for shortening execution time. For higher resolution runs, nb = ntot/sqrt(nprocs)/10 seems adequate. Globally, documentation is missing on that point in SCALAPACK.
 
 4) Open timescales.input. If you want free waves, set both these values to zero. If you want waves with a linear dissipation, such is performed in the paper on the superrotation of hot Jupiters that will be submitted 21st of April, choose the characteristic timescales you want. More documentation is provided in Iro et al. 2005 and Komacek and Showman 2016.
 
