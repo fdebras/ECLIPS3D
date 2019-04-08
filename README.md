@@ -87,8 +87,14 @@ If you just downloaded lapack and scalapack on your personal computer, then the 
 
 ##########################
 
-Assuming that compilation works fine, here is a detail of how to run the code for the four setups. 
+Assuming that compilation works fine, here is a detail of how to run the code for the three eigenvectors setup, and afterwards for the steady circulation. 
 
-*2D_axi* : 
+1) In the python repertory: run the script data_to_ECLIPS3D.py to generate an atmosphere initialised at rest. You need to change the 'output_dire' at the beginning of the file to the correct path to your computer. Choose a number of radial (Nz), latitudinal (Nlat) (and longitudinal (Nlong) if you are running the 3D code) points, according to your number of processors. Resolution and execution time are alluded to in the paper.  
+
+2) In the bin directory, type 'make' (see above for discussions about libraries). You might need to adapt to other compilers if mpif90 is not on your computer.
+
+3) In the run directory: open data.input and adapt it to the planet you are considering, and the number of points you are using. For low number of points, nb=255 seems to always be a good choice for shortening execution time. For higher resolution runs, nb = ntot/sqrt(nprocs)/10 seems adequate. GLobally, documentation is missing on that point in SCALAPACK.
+
+3) 
 
                                         
