@@ -3,7 +3,7 @@ Public Fortran 90 code for linear wave and circulation calculations, developed o
 
 Version : March 28, 2019. Developed by Florian Debras, article submitted to A&A. 
 
-This README aims at describing the code and how to use it. Simple examples are provided. 
+This README aims at describing the code and how to use it. Simple examples are provided. It is most easily read directly on the github website, and we are planning to upload a PDF soon. 
 
 4 setups of the code are provided: 2D_axi, 2D_shallow, 3D, 3D_steady. We first describe these setups before explaining how to run the code. 
 
