@@ -1,0 +1,29 @@
+&resolution
+nlong = 20
+nlat = 15
+nz = 30
+nb = 570 
+/
+&folder
+DIRDATA = '/gpfs/ts0/projects/Research_Project-157370/fvd201/3D_sca/data/'
+/
+
+#trad_type can be komacek, iroetal or constnt
+&planet
+deep = .TRUE.
+g_var = .TRUE. 
+eq_sym = .TRUE.
+trad_type = 'constnt' 
+tdrag_type = 'constnt'
+ymax = 88.9999d0
+height_min = 1.d5
+height_max = 1.09d7
+lambda_min = 1.2501d0
+lambda_max = 361.2501d0
+g = 9.42d0
+omega = 2.06d-5
+gascons = 4593.d0
+cp =14308.4d0 
+rtot = 9.44d7 
+p0 = 2.2d7
+/

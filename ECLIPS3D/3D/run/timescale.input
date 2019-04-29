@@ -1,0 +1,4 @@
+&timescales
+trad = 1.0d-6
+tdrag = 1.0d-6
+/
