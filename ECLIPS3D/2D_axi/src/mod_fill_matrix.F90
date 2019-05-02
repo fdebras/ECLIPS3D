@@ -517,9 +517,7 @@ MODULE mod_fill_matrix
       END DO
     END DO
     
-    
-    print *, N_hs_square(1,:)
-    stop
+   
 
 
 
