@@ -1,0 +1,4 @@
+&timescales
+trad_invert = 0.d0
+tdrag_invert = 1.0d-6
+/
