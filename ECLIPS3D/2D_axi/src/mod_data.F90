@@ -33,14 +33,14 @@ MODULE mod_data
   DOUBLE PRECISION, PUBLIC :: p0 ! Reference pressure
 
   ! Drag and radiative timescales
-  DOUBLE PRECISION, PUBLIC :: trad
-  DOUBLE PRECISION, PUBLIC :: tdrag
+  DOUBLE PRECISION, PUBLIC :: trad_invert
+  DOUBLE PRECISION, PUBLIC :: tdrag_invert
 
 
   NAMELIST /resolution/ nlat,nz,nb
   NAMELIST /folder/ DIRDATA
   NAMELIST /planet/ deep,g_var,eq_sym,trad_type,tdrag_type,m,ymax,height_min,height_max,&
                     g, omega, gascons, cp, rtot, p0
-  NAMELIST /timescales/ trad,tdrag
+  NAMELIST /timescales/ trad_invert, tdrag_invert
 
 END MODULE
