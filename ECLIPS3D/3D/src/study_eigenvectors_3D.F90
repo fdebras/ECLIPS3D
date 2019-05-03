@@ -123,7 +123,7 @@ PROGRAM eigenvectors_3D_sca
       
       
       
-      IF  (zero_long<=3 .and. zero_lat<=3 .and. zero_z<=3 .OR.DBLE(freq)<=-1.0D-6) THEN
+      IF  (zero_long<=3 .and. zero_lat<=3 .and. zero_z<=3) THEN
       
         print *, "n=",eig , "freq= ", DBLE(freq), 'im_freq=', DIMAG(freq), &
             'kz=',  zero_z, 'klat=',zero_lat, 'klong=', zero_long
