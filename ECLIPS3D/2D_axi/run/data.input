@@ -4,7 +4,7 @@ nz = 50
 nb = 64
 /
 &folder
-DIRDATA = '/gpfs/ts0/projects/Research_Project-157370/fvd201/2D_sca/data_baroclinic/'
+DIRDATA = '../data/'
 /
 
 #trad_type can be komacek, iroetal or constnt
@@ -12,8 +12,8 @@ DIRDATA = '/gpfs/ts0/projects/Research_Project-157370/fvd201/2D_sca/data_barocli
 deep = .TRUE.
 g_var = .TRUE. 
 eq_sym = .TRUE.
-trad_type = 'komacek' 
-tdrag_type = 'komacek'
+trad_type = 'constnt' 
+tdrag_type = 'constnt'
 m = 1
 ymax=88.999
 height_min = 0.0
