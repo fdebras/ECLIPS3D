@@ -12,7 +12,7 @@ PROGRAM write_eigenvectors
   
   COMPLEX*16, ALLOCATABLE, DIMENSION(:) :: eigenvec, tmp
 
-  CHARACTER(LEN=*), PARAMETER :: DIRDATA ='/gpfs/ts0/projects/Research_Project-157370/fvd201/3D_sca/data/'
+  CHARACTER(LEN=*), PARAMETER :: DIRDATA ='../data/'
   
   OPEN(unit=4,file=DIRDATA // 'size.dat', &
     access="SEQUENTIAL")
