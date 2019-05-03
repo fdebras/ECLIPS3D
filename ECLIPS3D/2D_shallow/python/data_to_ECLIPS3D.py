@@ -13,7 +13,7 @@ nlat=20
 
 
 #output directory
-output_dir = '/Users/florian/Desktop/test/ECLIPS3D/trunk/2D_shallow/data/'
+output_dir = '../data/'
 
 
 ###################################################################
