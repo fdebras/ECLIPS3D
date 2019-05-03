@@ -1,6 +1,6 @@
 &resolution
-nlong = 60
-nlat = 30
+nlong = 40
+nlat = 20
 nb = 64
 /
 &folder
