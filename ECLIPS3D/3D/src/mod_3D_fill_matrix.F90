@@ -731,7 +731,10 @@ t = 1
         END DO
       END DO
     END DO
-    print *,t, 'lol'
+    
+    IF (myrow==0 .AND. mycol==0) THEN
+      print *,t
+    END IF
 
  
     
@@ -935,7 +938,7 @@ t = 1
               !(-1.d0)*diff_u(i,j,k)*tdrag_u(i,j,k)	 
               u(i,j,k)*tdrag_u(i,j,k)
             END IF
-            CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(alpha,0.d0))  
+            CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(0.D0,-1.D0*alpha))  
             t=t+1
           END DO
         END DO
@@ -970,7 +973,7 @@ t = 1
               !(-1.d0)*diff_v(i,j,k)*tdrag_v(i,j,k)
               v(i,j,k)*tdrag_v(i,j,k)
             END IF
-            CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(alpha,0.d0))
+            CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(0.D0,-1.D0*alpha))
             t=t+1
           END DO
         END DO
@@ -999,7 +1002,7 @@ t = 1
             (kappa) / Ps_p(i,j,k)+ &
             gascons/(1.d0-kappa)*Q_p(i,j,k)*&
             (w_on_p(theta,i,j,k)/gz_u(k)-p(i,j,k)/C_p_square(i,j,k))
-           CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(alpha,0.d0))
+           CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(0.D0,-1.D0*alpha))
            t=t+1
           END DO
         END DO
@@ -1026,7 +1029,7 @@ t = 1
               theta(i,j,k)*(dPs_dr_w(i,j,k)/(Rho_w(i,j,k)*gz_w(k))) + &
               w(i,j,k)*tdrag_w(i,j,k)
             END IF 
-            CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(alpha,0.d0))
+            CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(0.D0,-1.D0*alpha))
             t=t+1
           END DO
         END DO
@@ -1060,7 +1063,7 @@ t = 1
             Rho_w(i,j,k)*(p0/Ps_w(i,j,k))**(kappa)/Ps_w(i,j,k)
               
            END IF
-           CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(alpha,0.d0)) 
+           CALL PZELSET(mat_evol,t,pos,desc_mat,DCMPLX(0.D0,-1.D0*alpha)) 
            t=t+1
           END DO
         END DO
