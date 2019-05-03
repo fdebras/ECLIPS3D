@@ -57,13 +57,19 @@ PROGRAM normal_modes_3D
   ndwtab=(nz+1)*nlat*nlong*10
   nqtab=nz*nlat*nlong+(nz+1)*nlat*nlong
   
-  print *, 'n', ntab, ndutab, ndvtab, ndptab, ndwtab, nqtab 
-  print *, 'C est parti pour le show'  
+  
+  IF (myrow==0 .AND. mycol==0) THEN
+    print *, 'n', ntab, ndutab, ndvtab, ndptab, ndwtab, nqtab 
+    print *, 'Job starting'
+  END IF
+  
   CALL init_matrix
   CALL fill_matrix(ntab, ndutab, ndvtab, ndptab, ndwtab, nqtab)
   CALL evalues
   
-  print *, 'Fin du sketch'
+  IF (myrow==0 .AND. mycol==0) THEN
+    print *, 'Job Finished'
+  END IF
 
 
   CALL BLACS_GRIDEXIT( info_txt )
