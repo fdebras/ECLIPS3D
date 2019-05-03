@@ -730,6 +730,10 @@ MODULE mod_3D_fill_matrix
         END DO
       END DO
     END DO
+    
+    IF (myrow==0 .AND. mycol==0) THEN
+      print *, 'All read'
+    END IF
 
     
     
