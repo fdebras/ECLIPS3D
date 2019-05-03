@@ -1,11 +1,11 @@
 &resolution
 nlong = 20
 nlat = 15
-nz = 30
-nb = 570 
+nz = 18
+nb = 255 
 /
 &folder
-DIRDATA = '/gpfs/ts0/projects/Research_Project-157370/fvd201/3D_sca/data/'
+DIRDATA = '../data/'
 /
 
 #trad_type can be komacek, iroetal or constnt
