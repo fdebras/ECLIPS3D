@@ -18,7 +18,7 @@ PROGRAM eigenvectors_3D_sca
   
   INTEGER :: i,j,k,a,eig
 
-  CHARACTER(LEN=*), PARAMETER ::DIRDATA='/gpfs/ts0/projects/Research_Project-157370/fvd201/3D_sca/data/'
+  CHARACTER(LEN=*), PARAMETER ::DIRDATA='../data/'
   OPEN(unit=1,file=DIRDATA // 'eig_sca.dat', &
     access='SEQUENTIAL')
   OPEN(unit=2, file=DIRDATA // 'frequency.dat', & 
