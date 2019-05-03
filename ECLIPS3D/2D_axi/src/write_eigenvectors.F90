@@ -1,8 +1,8 @@
 PROGRAM write_eigenvectors
 
   IMPLICIT NONE
-  INTEGER, PARAMETER :: nlat=60
-  INTEGER, PARAMETER :: nz=50
+  INTEGER, PARAMETER :: nlat=40
+  INTEGER, PARAMETER :: nz=20
   INTEGER, PARAMETER :: ntot=2*nlat*nz+(nlat+1)*nz+2*nlat*(nz-1)
   
   COMPLEX*16 :: freq
@@ -10,7 +10,7 @@ PROGRAM write_eigenvectors
   INTEGER :: num, num_prev
   
   COMPLEX*16, DIMENSION(ntot) :: eigenvec, tmp
-  CHARACTER(LEN=*), PARAMETER ::DIRDATA='/gpfs/ts0/projects/Research_Project-157370/fvd201/2D_sca/data_baroclinic/' 
+  CHARACTER(LEN=*), PARAMETER ::DIRDATA='../data/' 
   OPEN(unit=1,file=DIRDATA //'nummodes.dat', &
     access='SEQUENTIAL')
     
@@ -30,7 +30,6 @@ PROGRAM write_eigenvectors
   num_prev=0
   ! We read the numbers of the selected eigenvectors
   DO WHILE (num>0) !num=0 is the end of the file
-    print *, 'lol'
    IF (num==num_prev+1) THEN ! If the next eigenvectors is good, 
     !we read and write it
       READ(2,9999) eigenvec
