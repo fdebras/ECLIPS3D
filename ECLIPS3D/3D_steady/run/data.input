@@ -5,7 +5,7 @@ nz = 18
 nb = 64
 /
 &folder
-DIRDATA = '/home/florian/test/ECLIPS3D/3D_steady/data/'
+DIRDATA = '../data/'
 /
 
 #trad_type can be komacek, iroetal or constnt
