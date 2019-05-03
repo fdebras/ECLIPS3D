@@ -29,7 +29,7 @@ LIBS = /usr/lib/libblacs-openmpi.so.1 /usr/lib/libscalapack-openmpi.so.1.8.0 \
 # directories and vpath for source files
 BIN = ../bin/
 SRC = ../src/
-#VPATH  = $(CASDIR):$(SRC_3D):$(SRC_2D_axi):$(SRC_2D_shallow)
+VPATH  = $(SRC)
 #---------------------------------------------------
 
 #---------------------------------------------------
