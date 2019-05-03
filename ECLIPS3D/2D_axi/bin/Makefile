@@ -11,8 +11,8 @@ RUN = ../run/
 #---------------------------------------------------
 # Compiler and flags
 F90 = mpif90
-FLAGS = 
-CPPFLAGS = 
+FLAGS =
+CPPFLAGS =
 #FLAGS = -I${MKLROOT}/include/intel64/lp64 -I${MKLROOT}/include#-check_mpi
 #FLAGS = -ffast-math -ffree-line-length-0 -fdefault-real-8  \
 #        -fbounds-check -ffpe-trap=invalid,zero,overflow,underflow \
@@ -64,5 +64,3 @@ mod_init_para.o: mod_init_para.F90
 mod_writing.o: mod_writing.F90
 normal_modes_2D_para.o: normal_modes_2D_para.F90 mod_data.o mod_eigenvalues.o \
   mod_fill_matrix.o mod_init_matrix.o mod_init_para.o
-
-
