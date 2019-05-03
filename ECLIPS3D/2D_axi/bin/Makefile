@@ -26,10 +26,10 @@ LIBS = /usr/lib/libblacs-openmpi.so.1 /usr/lib/libscalapack-openmpi.so.1.8.0 \
 #---------------------------------------------------
 
 #---------------------------------------------------
-# directories and vpath for source files
+# Directories and vpath for source files
 BIN = ../bin/
 SRC = ../src/
-VPATH  = $(SRC)
+VPATH = $(SRC)
 #---------------------------------------------------
 
 #---------------------------------------------------
