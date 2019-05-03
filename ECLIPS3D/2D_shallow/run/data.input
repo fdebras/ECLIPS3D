@@ -4,7 +4,7 @@ nlat = 30
 nb = 64
 /
 &folder
-DIRDATA = '/home/florian/test/ECLIPS3D/2D_shallow/data/'
+DIRDATA = '../data/'
 /
 &planet
 phi = 0.d0
