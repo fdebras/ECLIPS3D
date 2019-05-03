@@ -9,7 +9,7 @@ import numpy as np
 from scipy import interpolate
 
 #output directory
-out_dir = '/Users/florian/Desktop/MyWork/ECLIPS3D/data/3D/'
+out_dir = '../data/'
 
 
 #Size of the output
