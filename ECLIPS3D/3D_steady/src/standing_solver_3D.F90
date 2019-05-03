@@ -50,12 +50,17 @@ PROGRAM standing_solver_3D
   ndwtab=(nz+1)*nlat*nlong*10
   nqtab=2*nz*nlat*nlong
    
-  print *, 'C est parti pour le show'  
+   
+  IF (myrow==0 .AND. mycol==0) THEN 
+    print *, 'Job starting'
+  END IF 
   CALL init_matrix
   CALL fill_matrix(ntab, ndutab, ndvtab, ndptab, ndwtab, nqtab)
   CALL solve
   
-  print *, 'Fin du sketch'
+  IF (myrow==0 .AND. mycol==0) THEN
+    print *, 'All done'
+  END IF
 
 
   CALL BLACS_GRIDEXIT( info_txt )
