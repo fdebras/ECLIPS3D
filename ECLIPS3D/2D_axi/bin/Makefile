@@ -33,30 +33,36 @@ VPATH  = $(SRC)
 #---------------------------------------------------
 
 #---------------------------------------------------
-# Source objects
+# Source files
 #---------------------------------------------------
 
-SRCOBJ = mod_data.o mod_init_para.o \
-         mod_init_matrix.o mod_fill_matrix.o  \
-         mod_writing.o mod_eigenvalues.o
+SRCFILES = mod_data.F90 mod_eigenvalues.F90 mod_fill_matrix.F90 \
+           mod_init_matrix.F90 mod_init_para.F90 mod_writing.F90 \
+           normal_modes_2D_para.F90
 
-###########################################################################				
+OBJFILES := $(SRCFILES:.F90=.o)
 
-2D_axi :	$(SRCOBJ) normal_modes_2D_para.o
-			$(F90) $(FLAGS) $(SRCOBJ) normal_modes_2D_para.o -o \
-			$(RUN)ECLIPS3D_2D_axi.exe $(LIBS)  
+TARGET = $(RUN)ECLIPS3D_2D_axi.exe
+###########################################################################
+all: $(TARGET)
 
+%.o:%.F90
+	$(F90) $(CPPFLAS) $(FLAGS) -c $< -o $@
 
-normal_modes_2D_para.o:				$(SRC)normal_modes_2D_para.F90 Makefile
-			$(F90) $(CPPFLAGS) $(FLAGS) -c $(SRC)normal_modes_2D_para.F90
+clean:
+	@rm *.o *.mod
 
-%.o:			$(SRC)%.F90
-				$(F90) $(CPPFLAGS) $(FLAGS) -c $< -o $@			
+$(TARGET) : $(OBJFILES)
+	$(F90) $(FLAGS) $(OBJFILES) -o $(TARGET) $(LIBS)
 
+mod_data.o: mod_data.F90
+mod_eigenvalues.o: mod_eigenvalues.F90 mod_data.o mod_fill_matrix.o mod_init_matrix.o \
+  mod_init_para.o mod_writing.o
+mod_fill_matrix.o: mod_fill_matrix.F90 mod_data.o mod_init_matrix.o
+mod_init_matrix.o: mod_init_matrix.F90 mod_data.o mod_init_para.o
+mod_init_para.o: mod_init_para.F90
+mod_writing.o: mod_writing.F90
+normal_modes_2D_para.o: normal_modes_2D_para.F90 mod_data.o mod_eigenvalues.o \
+  mod_fill_matrix.o mod_init_matrix.o mod_init_para.o
 
-#############################################################################
-clean :
-	rm  *.o *.mod
-
-#############################################################################
 
