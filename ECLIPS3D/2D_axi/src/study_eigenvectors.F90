@@ -4,8 +4,8 @@ PROGRAM find_eigenvectors
   IMPLICIT NONE
   
   
-  INTEGER, PARAMETER :: nlat=60
-  INTEGER, PARAMETER :: nz=45
+  INTEGER, PARAMETER :: nlat=40
+  INTEGER, PARAMETER :: nz=20
   INTEGER, PARAMETER :: ntot=2*nlat*nz+(nlat+1)*nz+2*nlat*(nz-1)
   COMPLEX*16, DIMENSION(nlat*nz) :: p_temp 
   COMPLEX*16, DIMENSION(nlat,nz) :: p
@@ -18,7 +18,7 @@ PROGRAM find_eigenvectors
   INTEGER :: zeroz(0:nz), zerolat(0:nlat)
   
   INTEGER :: i,j,a,eig
-  CHARACTER(LEN=*), PARAMETER :: DIRDATA='/gpfs/ts0/projects/Research_Project-157370/fvd201/2D_sca/data_baroclinic/' 
+  CHARACTER(LEN=*), PARAMETER :: DIRDATA='../data/' 
   OPEN(unit=1,file=DIRDATA // 'eig_sca.dat', &
     access='SEQUENTIAL')
   OPEN(unit=2, file=DIRDATA // 'frequency.dat', & 
@@ -76,7 +76,7 @@ PROGRAM find_eigenvectors
         END IF
       END DO 
      
-      IF ((zero_z<=2 .AND. zero_lat<=2) .OR. DIMAG(freq)>8.0E-6) THEN !.AND. ABS(DIMAG(freq))>=1.0E-7)) THEN! .OR. DIMAG(freq)>8.0E-6) THEN  
+      IF ((zero_z<=2 .AND. zero_lat<=2)) THEN  
         print *,'k= ', eig, 'freq =', freq
         WRITE(5,*) eig, freq
       END IF
