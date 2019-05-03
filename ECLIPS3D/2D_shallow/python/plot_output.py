@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 
 #File to plot directory
-rep = '/Users/florian/Desktop/MyWork/ECLIPS3D/data/2D_shallow/'
+rep = '../data/'
 #Name of the output file. Default : selected_modes.dat
 infile2=open(rep + 'selected_modes.dat')
 
