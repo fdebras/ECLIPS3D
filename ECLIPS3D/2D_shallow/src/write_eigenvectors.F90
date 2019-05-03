@@ -11,7 +11,7 @@ PROGRAM write_eigenvectors
   CHARACTER(LEN=300) :: DIR 
   COMPLEX*16, DIMENSION(ntot) :: eigenvec, tmp
   
-  DIR = '/Users/florian/Desktop/test/ECLIPS3D/trunk/2D_shallow/data/'
+  DIR = '../data/'
 
   OPEN(unit=1,file=TRIM(DIR) // 'nummodes.dat', &
     access='SEQUENTIAL')
@@ -32,7 +32,6 @@ PROGRAM write_eigenvectors
   num_prev=0
   ! We read the numbers of the selected eigenvectors
   DO WHILE (num>0) !num=0 is the end of the file
-    print *, 'lol'
    IF (num==num_prev+1) THEN ! If the next eigenvectors is good, 
     !we read and write it
       READ(2,9999) eigenvec
