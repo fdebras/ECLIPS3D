@@ -8,7 +8,7 @@ PROGRAM read_solution
   DOUBLE PRECISION, DIMENSION(ntot) :: solution
   
   
-  CHARACTER(LEN=*), PARAMETER :: DIRDATA='/gpfs/ts0/projects/Research_Project-157370/fvd201/standing_3D/data/'
+  CHARACTER(LEN=*), PARAMETER :: DIRDATA='../data/'
   OPEN(unit=1,file=DIRDATA // 'solution.dat', &
     access='SEQUENTIAL')
   
