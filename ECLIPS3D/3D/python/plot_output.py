@@ -19,7 +19,7 @@ from matplotlib import gridspec
 
 
 #Directory of files to plot
-rep = '/Users/florian/Desktop/MyWork/3D_sca/data/normal_modes/'
+rep = '../data/'
 
 #Name of steady initial thermodynamic profile and results.
 # Defaults : rho_cs_ns.dat and selected_modes.dat
