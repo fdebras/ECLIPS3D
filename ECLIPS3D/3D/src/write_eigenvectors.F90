@@ -40,7 +40,6 @@ PROGRAM write_eigenvectors
   num_prev=0
   ! We read the numbers of the selected eigenvectors
   DO WHILE (num>0) !num=0 is the end of the file
-    print *, 'lol'
    IF (num==num_prev+1) THEN ! If the next eigenvectors is good, 
     !we read and write it
       READ(2,9999) eigenvec
