@@ -23,7 +23,7 @@ PROGRAM find_eigenvectors
 
   INTEGER :: i,j,a,eig
 
-  DIR = '/Users/florian/Desktop/test/ECLIPS3D/trunk/2D_shallow/data/'
+  DIR = '../data/'
    
   OPEN(unit=1,file=TRIM(DIR) // 'eig_sca.dat', &
     access='SEQUENTIAL')
@@ -81,9 +81,8 @@ PROGRAM find_eigenvectors
           zero_lat=i
         END IF
       END DO 
-!       print *, MAXVAL(pp)-MINVAL(pp)
-!      print *,'k= ', eig, 'freq =', freq
-      IF ((zero_long<=4 .AND. zero_lat<=3)) THEN !.OR. (DIMAG(freq)<-1.d-5)) THEN  
+
+      IF ((zero_long<=3 .AND. zero_lat<=3)) THEN 
         print *,'k= ', eig, 'freq =', freq
         WRITE(5,*) eig, freq
       END IF
