@@ -34,7 +34,7 @@ v2=19
 symmetric = True
 ymax = 90
 
-rep='/Users/florian/Desktop/MyWork/ECLIPS3D/data/3D_steady/'
+rep='../data/'
 
 infile=open(rep + 'initial_state.dat')
 infile2=open(rep + 'solution_to_read.dat')
