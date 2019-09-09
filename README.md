@@ -85,7 +85,7 @@ Then, ECLIPS3D should work if you just change the libs line in the makefile :
 
 ##########################
 
-Assuming that compilation works fine, here is a detail of how to run the code for the three eigenvectors setup, and afterwards selected eigenvectors setup and for the steady circulation.
+Assuming that compilation works fine, here is a detail of how to run the code for the three eigenvectors setup, and afterwards  for the steady circulation. The 'selected eigenvectors' is not yet implemented in the default version of the code, but should be ASAP and can be given on demand. 
 
 1) In the python repertory: run the script data_to_ECLIPS3D.py to generate an atmosphere initialised at rest. You need to change the 'output_dire' at the beginning of the file to the correct path to your computer. Choose a number of radial (Nz), latitudinal (Nlat) (and longitudinal (Nlong) if you are running the 3D code) points, according to your number of processors. Resolution and execution time are alluded to in the paper.  
 
@@ -116,6 +116,16 @@ If you get a message of the form "PZGEHRD failure", it means that the scalapack 
 
 Three things are needed: the directory, the rho_cs_ns.dat file and the selected_modes.dat file, created by write_eigenvectors.F90. Note: the way to read the file is old school, because I had some python-Fortran problems in the beginning. This can easily be improved. 
 
-There are many displyaing options in this python file, the default one being a window with all 5 perturbed variables (normalized to their energy contribution, see Thuburn et al.2002). "n_auto" modes will be displayed, the first one being defined for example at line 141 in the 2D axisymmetric version (here, 0 : "t>0".  
+There are many displyaing options in this python file, the default one being a window with all 5 perturbed variables (normalized to their energy contribution, see Thuburn et al.2002). "n_auto" modes will be displayed, the first one being defined for example at line 141 in the 2D axisymmetric version (here, 0 : "t>0".) You can interpolate to have higher resolution image, as well as choose to plot in the longitudinal direction given a 'm' value is specified. If you are in 3D, you get even more choice. These pyhton files needs additional commenting which will be given in the near future. Again, help can be given on request. 
 
-                                        
+
+
+
+In the steady circulation setup (3D_steady repository), simpply do the same up to step 6. The outputs on screen will be slightly different, and note that the initial python file does not create an atmosphere at rest only, but adds a heating function taken from Komacek & Showman 2016, with the addition of an exponential damping in the high atlosphere (in order to mimic the sponge layer). Step 7: simply call the routine read_solution.F90, which sole purpose is to write the data in an appropriate way. Then, visualize your only output with plot_output.py. There is only one output as this is only a matrix inversion you are performing. 
+
+
+-------------------------------------------------------
+LAST WORD
+-------------------------------------------------------       
+
+This version of ECLIPS3D has been adapted to be used as simply as possible, although the original program was not developed in a user friendly way. There may still be some places in the code which prints weird outputs (like 'lol', my usual debugging output) or which are not easy to understand. Do not hesitate to contact me with any request about ECLIPS3D. 
