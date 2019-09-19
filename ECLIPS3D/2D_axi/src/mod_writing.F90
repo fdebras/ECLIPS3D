@@ -4,7 +4,7 @@ MODULE mod_writing
 
   SUBROUTINE PDLAWRITE( FILNAM, M, N, A, IA, JA, DESCA, IRWRIT, &
                             ICWRIT, WORK )
- 
+
 !  -- ScaLAPACK tools routine (version 1.8) --
 !    University of Tennessee, Knoxville, Oak Ridge National Laboratory,
 !    and University of California, Berkeley.
@@ -224,8 +224,8 @@ MODULE mod_writing
  !     End of PDLAWRITE
  !
        END SUBROUTINE
-       
-       
+
+
        SUBROUTINE PZLAWRITE( FILNAM, M, N, A, IA, JA, DESCA, IRWRIT, &
                             ICWRIT, WORK )
  !
@@ -341,7 +341,7 @@ MODULE mod_writing
                    DO 30 K = 0, IB-1
                       WRITE( NOUT, FMT = 9999 ) &
                       DBLE (A( II+K+(JJ+H-1)*LDA )),&
-                      DIMAG (A( II+K+(JJ+H-1)*LDA ))      
+                      DIMAG (A( II+K+(JJ+H-1)*LDA ))
     30             CONTINUE
                 END IF
              ELSE
@@ -458,7 +458,7 @@ MODULE mod_writing
  !     End of PZLAWRITE
  !
        END SUBROUTINE
- 
 
-       
+
+
 END MODULE
