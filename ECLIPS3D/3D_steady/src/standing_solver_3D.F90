@@ -6,10 +6,10 @@ PROGRAM standing_solver_3D
   USE mod_init_matrix
   USE mod_3D_fill_matrix
   USE mod_solver
-  
-  
 
-  
+
+
+
   IMPLICIT NONE
 
   INTEGER ::  ntab, ndutab, ndvtab, ndwtab, ndptab, nqtab
@@ -42,22 +42,22 @@ PROGRAM standing_solver_3D
 
   ntot=nlong*(2*nlat*nz+(nlat+1)*nz+2*nlat*(nz))
   kappa = gascons/cp
-    
+
   ntab=6*nlong*(2*nlat*nz+(nlat+1)*nz+nlat*(nz+1))
   ndutab=nz*nlat*nlong*7
   ndvtab=nz*(nlat+1)*nlong*7
   ndptab=nz*nlat*nlong*8
   ndwtab=(nz+1)*nlat*nlong*10
   nqtab=2*nz*nlat*nlong
-   
-   
-  IF (myrow==0 .AND. mycol==0) THEN 
+
+
+  IF (myrow==0 .AND. mycol==0) THEN
     print *, 'Job starting'
-  END IF 
+  END IF
   CALL init_matrix
   CALL fill_matrix(ntab, ndutab, ndvtab, ndptab, ndwtab, nqtab)
   CALL solve
-  
+
   IF (myrow==0 .AND. mycol==0) THEN
     print *, 'All done'
   END IF
@@ -70,4 +70,3 @@ PROGRAM standing_solver_3D
   CALL MPI_FINALIZE(ierr)
 
 END PROGRAM
-  

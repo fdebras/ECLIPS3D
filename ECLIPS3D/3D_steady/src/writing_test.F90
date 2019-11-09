@@ -4,7 +4,7 @@ MODULE mod_writing
 
   SUBROUTINE PDLAWRITE( FILNAM, M, N, A, IA, JA, DESCA, IRWRIT, &
                             ICWRIT, WORK )
- 
+
 !  -- ScaLAPACK tools routine (version 1.8) --
 !    University of Tennessee, Knoxville, Oak Ridge National Laboratory,
 !    and University of California, Berkeley.

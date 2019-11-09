@@ -8,33 +8,33 @@ MODULE mod_eigenvalues
   INTEGER, DIMENSION(50) :: descVR, descVL
   COMPLEX*16, DIMENSION(:), ALLOCATABLE:: freq
   COMPLEX*16, DIMENSION(:,:), ALLOCATABLE:: vl, vr
-  
-  
-CONTAINS 
+
+
+CONTAINS
 
   SUBROUTINE evalues
-  
-  IMPLICIT NONE 
+
+  IMPLICIT NONE
   INTEGER*8 :: LWORK
-  
+
   INTEGER  :: liwork=1000
   INTEGER :: i,j, sel_dum, mput
-  
+
   INTEGER :: IA,JA
-  
+
   INTEGER :: info
-  
+
   INTEGER :: ILO, IHI
   INTEGER, DIMENSION(:), ALLOCATABLE :: scale
-  
+
   COMPLEX*16 :: ONE=(1.d0,0.d0)
   COMPLEX*16 :: ZERO=(0.d0,0.d0)
-  
+
   COMPLEX*16, DIMENSION(ntot-1):: tau
   COMPLEX*16 :: alpha
-  
+
   COMPLEX*16, DIMENSION(:), ALLOCATABLE  :: WORK, RWORK, IWORK
-  
+
   EXTERNAL BLACS_GRIDINFO, DESCINIT, PZELSET, PDHSEQR, PDGEBAL, &
   PDGEHRD, BLACS_GRIDEXIT, BLACS_EXIT
 
@@ -48,11 +48,11 @@ CONTAINS
   ALLOCATE(vr(nlld,nlld))
   ALLOCATE(vl(nlld,nlld))
   ALLOCATE(freq(ntot))
-  
+
   IF (myrow==0 .and. mycol==0) THEN
     print *, 'Begin eigenvalues finder !'
   END IF
-  CALL PZLASET(' ', ntot,ntot,ZERO, ONE, vr, 1,1, descVR)    
+  CALL PZLASET(' ', ntot,ntot,ZERO, ONE, vr, 1,1, descVR)
 
   ILO=1
   IHI=ntot
@@ -63,12 +63,12 @@ CONTAINS
   CALL PZGEHRD(ntot,ILO,IHI,mat_evol,IA,JA,desc_mat,tau,IWORK,-1,info)
   LWORK=IWORK(1)
   ALLOCATE(WORK(LWORK))
-  CALL PZGEHRD(ntot,ILO,IHI,mat_evol,IA,JA,desc_mat,tau,WORK,LWORK,info)  
+  CALL PZGEHRD(ntot,ILO,IHI,mat_evol,IA,JA,desc_mat,tau,WORK,LWORK,info)
   DEALLOCATE(WORK)
 
   IF (info==0) THEN
 
-  ELSE 
+  ELSE
     print *, "PZGEHRD FAILURE"
   END IF
 
@@ -80,16 +80,16 @@ CONTAINS
 
   IF (info==0) THEN
 
-  ELSE 
+  ELSE
     print *, "PZUNMHR FAILURE"
   END IF
 
-  
-  
+
+
   IF (myrow==0 .and. mycol==0) THEN
     print *, 'Kill the diagonal !'
   END IF
-  
+
    DO i=1,ntot
      DO j=1,ntot
        IF (j<i-1) THEN
@@ -97,23 +97,23 @@ CONTAINS
        END IF
      END DO
    END DO
-   
+
   IF (myrow==0 .and. mycol==0) THEN
     print *, 'All destroyed, sir'
   END IF
-  ALLOCATE(RWORK(1))  
+  ALLOCATE(RWORK(1))
   call PZLAHQR(.TRUE.,.TRUE.,ntot,ILO,IHI,mat_evol,desc_mat,freq,1,ntot,VR,descVR, &
   rwork,-1,iwork,LIWORK,info)
   DEALLOCATE(RWORK)
 
   LWORK=iwork(1)
-  ALLOCATE(WORK(LWORK)) 
+  ALLOCATE(WORK(LWORK))
   call PZLAHQR(.TRUE.,.TRUE.,ntot,ILO,IHI,mat_evol,desc_mat,freq,1,ntot,VR,descVR, &
   WORK,LWORK,iwork,LIWORK,info)
-  
+
   IF (info==0) THEN
 
-  ELSE 
+  ELSE
     print *, "PZLAHQR FAILURE"
   END IF
   IF (myrow==0 .and. mycol==0) THEN
@@ -125,17 +125,17 @@ CONTAINS
     IF (myrow==0 .and. mycol==0) THEN
       print *, 'Job finished'
     END IF
-  ELSE 
+  ELSE
     print *, "PZTREVC FAILURE"
   END IF
- 
+
   IF (myrow==0 .and. mycol==0) THEN
     open(unit=44,file=TRIM(DIRDATA) // 'size.dat', &
     access="SEQUENTIAL")
 
     WRITE(44,*) nlong,nlat,nz,ntot
     CLOSE(44)
-    
+
     open(unit=43,file=TRIM(DIRDATA) // 'frequency.dat', &
     access='SEQUENTIAL')
     DO i=1,ntot
@@ -150,15 +150,15 @@ CONTAINS
 
   CALL PZLAWRITE(TRIM(DIRDATA) // 'eig_sca.dat',nlong*nlat*nz, &
        ntot,VR, nlong*nz*(2*nlat+1)+1,1,descVR,0,0,WORK)
-  
+
   DEALLOCATE(IWORK)
   DEALLOCATE(RWORK)
   DEALLOCATE(WORK)
 
-  
+
 
 9999 FORMAT( E15.8,E15.8 )
 
   END SUBROUTINE
-  
+
 END MODULE

@@ -6,10 +6,10 @@ PROGRAM normal_modes_3D
   USE mod_init_matrix
   USE mod_3D_fill_matrix
   USE mod_eigenvalues
-  
-  
 
-  
+
+
+
   IMPLICIT NONE
 
   INTEGER ::  ntab, ndutab, ndvtab, ndwtab, ndptab, nqtab
@@ -49,24 +49,24 @@ PROGRAM normal_modes_3D
 
   ntot=nlong*(2*nlat*nz+(nlat+1)*nz+2*nlat*(nz))
   kappa = gascons/cp
-    
+
   ntab=6*nlong*(2*nlat*nz+(nlat+1)*nz+nlat*(nz+1))
   ndutab=nz*nlat*nlong*7
   ndvtab=nz*(nlat+1)*nlong*7
   ndptab=nz*nlat*nlong*8
   ndwtab=(nz+1)*nlat*nlong*10
   nqtab=nz*nlat*nlong+(nz+1)*nlat*nlong
-  
-  
+
+
   IF (myrow==0 .AND. mycol==0) THEN
-    print *, 'n', ntab, ndutab, ndvtab, ndptab, ndwtab, nqtab 
+    print *, 'n', ntab, ndutab, ndvtab, ndptab, ndwtab, nqtab
     print *, 'Job starting'
   END IF
-  
+
   CALL init_matrix
   CALL fill_matrix(ntab, ndutab, ndvtab, ndptab, ndwtab, nqtab)
   CALL evalues
-  
+
   IF (myrow==0 .AND. mycol==0) THEN
     print *, 'Job Finished'
   END IF
@@ -79,4 +79,3 @@ PROGRAM normal_modes_3D
   CALL MPI_FINALIZE(ierr)
 
 END PROGRAM
-  
