@@ -4,7 +4,7 @@ MODULE mod_data
 
   !Parameters
   DOUBLE PRECISION,PUBLIC, PARAMETER :: pi=3.141592654 ! Well ... pi
-  ! Resolution  
+  ! Resolution
   INTEGER, PUBLIC :: nlong
   INTEGER, PUBLIC :: nlat
   INTEGER, PUBLIC :: nz
@@ -12,13 +12,13 @@ MODULE mod_data
   INTEGER, PUBLIC :: nb
   ! data folder
   CHARACTER(LEN=100), PUBLIC :: DIRDATA
-  
+
   !Planet inputs
   LOGICAL, PUBLIC :: deep ! true if deep atmosphere
   LOGICAL, PUBLIC :: g_var ! True if g varies in atmosphere
   LOGICAL, PUBLIC :: eq_sym ! True if symmetric about equator
-  CHARACTER(LEN=7), PUBLIC :: trad_type  
-  CHARACTER(LEN=7), PUBLIC :: tdrag_type  
+  CHARACTER(LEN=7), PUBLIC :: trad_type
+  CHARACTER(LEN=7), PUBLIC :: tdrag_type
 
 
 
@@ -27,8 +27,8 @@ MODULE mod_data
   DOUBLE PRECISION, PUBLIC :: height_max ! Max height
   DOUBLE PRECISION, PUBLIC :: lambda_min ! min lambda
   DOUBLE PRECISION, PUBLIC :: lambda_max ! max lambda
-  DOUBLE PRECISION, PUBLIC :: g  !Gravity acceleration 
-  DOUBLE PRECISION, PUBLIC :: omega !Rotation rate 
+  DOUBLE PRECISION, PUBLIC :: g  !Gravity acceleration
+  DOUBLE PRECISION, PUBLIC :: omega !Rotation rate
   DOUBLE PRECISION, PUBLIC :: gascons ! gas constant
   DOUBLE PRECISION, PUBLIC :: cp !specific heat capacity of air
   DOUBLE PRECISION, PUBLIC :: kappa ! gascons/cp

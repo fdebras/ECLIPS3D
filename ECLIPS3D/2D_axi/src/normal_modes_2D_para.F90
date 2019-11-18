@@ -1,12 +1,12 @@
 PROGRAM normal_modes_2D_para
-  
+
   USE MPI
   USE mod_init_para
   USE mod_data
   USE mod_init_matrix
   USE mod_fill_matrix
   USE mod_eigenvalues
- 
+
   IMPLICIT NONE
 
   INTEGER ::  ntab, ndtab
@@ -46,23 +46,23 @@ PROGRAM normal_modes_2D_para
 
   ntot=2*nlat*nz+(nlat+1)*nz+2*nlat*(nz-1)
   ntab = 6*(nlat*nz+(nlat+1)*nz+nlat*(nz+1))
-  ndtab = 8*nlat*nz+7*nlat*(nz+1)+5*(nlat+1)*nz 
+  ndtab = 8*nlat*nz+7*nlat*(nz+1)+5*(nlat+1)*nz
 
   kappa = gascons/cp
-  
+
   CALL init_matrix
   CALL fill_matrix(ntab,ndtab)
   CALL evalues
-  
+
 
 
   CALL BLACS_GRIDEXIT( info_txt )
   CALL BLACS_EXIT(1)
 
-!   
+!
 
   print *, 'lol'
   CALL MPI_FINALIZE(ierr)
 
-  
+
 END PROGRAM

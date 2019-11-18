@@ -4,12 +4,12 @@ MODULE mod_init_para
   INTEGER :: info_txt, nprocs, nprow, npcol
   INTEGER :: ierr
   INTEGER :: myrow, mycol
-  
+
 CONTAINS
 
   SUBROUTINE init_para
 
-    
+
     IMPLICIT NONE
 
 
